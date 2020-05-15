@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 /* routes definition */
-app.use('/usuarios', route);
+app.use('/', route);
 
 /* server definition */
 const server = http.createServer(app);

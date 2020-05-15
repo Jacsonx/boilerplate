@@ -1,13 +1,14 @@
 const Response = require('../models/response');
-const conn = require('../config/config');
+const { knex }= require('../config/config');
 
-async function get(req, res) {
+function get(req, res) {
 	try {
-		await	conn.knex.select('username').from('usuarios').on('query-response', response => {
-			res.status(200);
-			res.send(new Response({ data: response, error: '', status: 200 }));
-			console.log(response);
-		});
+		knex.select()
+			.from('usuarios')
+			.where('id',req.params.id)
+			.then(usuarios =>{
+				res.send(usuarios)
+			});
 	} catch (error) {
 		console.error(error);
     res.status(500);
